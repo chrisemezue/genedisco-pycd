@@ -5,3 +5,7 @@ packrat/lib*/
 .idea/
 .DS_Store
 .pyc
+
+#Chris
+slurm*.txt
+genv/
