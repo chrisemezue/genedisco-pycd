@@ -9,3 +9,11 @@ packrat/lib*/
 #Chris
 slurm*.txt
 genv/
+cache/
+output/
+cache2/
+output2/
+slurm*.out
+genedisco.egg-info/*
+job.sh
+acq.sh
