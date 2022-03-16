@@ -57,13 +57,11 @@ class CoreSet(BaseBatchAcquisitionFunction):
                 min_dist = np.tile(float("inf"), num_options)
             else:
                 # Two options:
-                # 1. Use prevously_selected for fitting and score_samples on options
-                # 2. Use prevously_selected+options for fitting. Score_Samples on options.
-
+                # 1. Use prevously_selected for fitting and `score_samples` on options (currently using this).
+                # 2. Use prevously_selected+options for fitting and `score_samples`` on options.
                 kde = KernelDensity(kernel='gaussian', bandwidth=0.5).fit(previously_selected)
                 log_likelihood_options = kde.score_samples(options) #log-likelihood of each sample in options under the model: https://scikit-learn.org/stable/modules/generated/sklearn.neighbors.KernelDensity.html#sklearn.neighbors.KernelDensity.score_samples 
                 min_dist = -1 * log_likelihood_options # (negative_log_likelihood_options). This will make the concept of min and max the same with when using pairwise distance
-            
              
             indices = []
             for i in range(num_samples):
