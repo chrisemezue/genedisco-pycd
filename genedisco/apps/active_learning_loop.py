@@ -25,6 +25,8 @@ from typing import AnyStr, Dict, List, Optional
 from slingpy import AbstractMetric, AbstractBaseModel, AbstractDataSource
 from genedisco.active_learning_methods.acquisition_functions.kmeans import Kmeans
 from genedisco.active_learning_methods.acquisition_functions.core_set import CoreSet
+from genedisco.active_learning_methods.acquisition_functions.core_set2 import CoreSetKDE
+from genedisco.active_learning_methods.acquisition_functions.core_setUMAP import CoreSetUMAP
 from genedisco.apps.single_cycle_application import SingleCycleApplication, CustomLoss
 from genedisco.active_learning_methods.acquisition_functions.badge_sampling import BadgeSampling
 from genedisco.active_learning_methods.acquisition_functions.adversarial_bim import AdversarialBIM
@@ -119,16 +121,15 @@ class ActiveLearningLoop(sp.AbstractBaseApplication):
         elif acquisition_function_name == "adversarialBIM":
             return AdversarialBIM()
         elif acquisition_function_name == "custom":
-            acqfunc_class = ActiveLearningLoop.get_if_valid_acquisition_function_file(acquisition_function_path)
-            return acqfunc_class()
+            return CoreSetUMAP()
+            #acqfunc_class = ActiveLearningLoop.get_if_valid_acquisition_function_file(acquisition_function_path)
+            #return acqfunc_class()
         else:
             raise NotImplementedError()
 
     @staticmethod
     def get_if_valid_acquisition_function_file(acquisition_function_path: AnyStr):
 
-
-        import pdb; pdb.see
 
         if not os.path.exists(acquisition_function_path):
             raise ValueError("The path to the acquisition function file does not exist.")

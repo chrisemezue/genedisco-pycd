@@ -22,15 +22,15 @@ from genedisco.active_learning_methods.acquisition_functions.base_acquisition_fu
     BaseBatchAcquisitionFunction
 
 
-class CoreSet(BaseBatchAcquisitionFunction):
+class CoreSetKDE(BaseBatchAcquisitionFunction):
     def __call__(self, dataset_x: AbstractDataSource, batch_size: int, available_indices: List[AnyStr],
                  last_selected_indices: List[AnyStr], last_model: AbstractBaseModel) -> List:
         topmost_hidden_representation = last_model.get_embedding(dataset_x.subset(available_indices)).numpy()
         selected_hidden_representations = last_model.get_embedding(dataset_x.subset(last_selected_indices)).numpy()
-        chosen = self.select_most_distant(topmost_hidden_representation, selected_hidden_representations, batch_size)
-        #chosen2 = self.select_most_distant_with_kde(topmost_hidden_representation, selected_hidden_representations, batch_size)
+        #chosen = self.select_most_distant(topmost_hidden_representation, selected_hidden_representations, batch_size)
+        chosen2 = self.select_most_distant_with_kde(topmost_hidden_representation, selected_hidden_representations, batch_size)
         #import pdb; pdb.set_trace()  
-        return [available_indices[idx] for idx in chosen] #change to `chosen` to use the default one - non-KDE   
+        return [available_indices[idx] for idx in chosen2] #change to `chosen` to use the default one - non-KDE   
 
     def select_most_distant(self, options, previously_selected, num_samples):
        

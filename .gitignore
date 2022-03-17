@@ -17,3 +17,6 @@ slurm*.out
 genedisco.egg-info/*
 job.sh
 acq.sh
+
+cache*
+output*
