@@ -41,10 +41,11 @@ from genedisco.active_learning_methods.acquisition_functions.random_acquisition_
 
 
 class ActiveLearningLoop(sp.AbstractBaseApplication):
-    ACQUISITION_FUNCTIONS = [
-        "random", "topuncertain", "softuncertain", "marginsample", "coreset", "badge",
-        "kmeans_embedding", "kmeans_data", "adversarialBIM"#, "custom"
-    ]
+    #ACQUISITION_FUNCTIONS = ["umap","kde",
+    #    "random", "topuncertain", "softuncertain", "marginsample", "coreset", "badge",
+    #    "kmeans_embedding", "kmeans_data", "adversarialBIM"#, "custom"
+    #]
+    ACQUISITION_FUNCTIONS = ["umap","kde"]
 
     def __init__(
         self,
@@ -120,10 +121,14 @@ class ActiveLearningLoop(sp.AbstractBaseApplication):
             return Kmeans(representation="raw", n_init=10)
         elif acquisition_function_name == "adversarialBIM":
             return AdversarialBIM()
+        elif acquisition_function_name == "umap":
+            return CoreSetUMAP()  
+        elif acquisition_function_name == "kde":
+            return CoreSetKDE()     
         elif acquisition_function_name == "custom":
-            return CoreSetUMAP()
-            #acqfunc_class = ActiveLearningLoop.get_if_valid_acquisition_function_file(acquisition_function_path)
-            #return acqfunc_class()
+            #return CoreSetUMAP()
+            acqfunc_class = ActiveLearningLoop.get_if_valid_acquisition_function_file(acquisition_function_path)
+            return acqfunc_class()
         else:
             raise NotImplementedError()
 

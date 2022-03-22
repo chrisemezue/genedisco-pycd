@@ -25,11 +25,9 @@ from genedisco.active_learning_methods.acquisition_functions.base_acquisition_fu
 
 class CoreSetUMAP(BaseBatchAcquisitionFunction):
     def initialize(self,dataset_x):
-        #Fit UMAP on the whole dataset (it will be nice not to do this every call)
-        
+        #Fit UMAP on the whole dataset
         self.embedding = umap.UMAP(metric='euclidean', n_components=16).fit(dataset_x.get_data()[0])
-        
-    
+
     def __init__(self):
         self.initialized=False
         self.embedding= None
