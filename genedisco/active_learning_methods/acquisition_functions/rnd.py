@@ -101,6 +101,7 @@ class RND(BaseBatchAcquisitionFunction):
             Get loss: MSE(label_of_points_to_acquire,label_of_points_to_acquire) loss is by sum/mean
             do backward step
             optimizer.step()
+            
         """
         criterion = nn.MSELoss()
         EPOCH=20
