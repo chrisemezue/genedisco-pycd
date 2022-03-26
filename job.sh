@@ -3,10 +3,10 @@
 #SBATCH --gres=gpu:20GB:1
 #SBATCH --cpus-per-gpu=24
 #SBATCH --mem=100G
-#SBATCH --time=48:00:00
+#SBATCH --time=168:00:00
 #SBATCH --partition=long
-#SBATCH --error=/home/mila/c/chris.emezue/genedisco/slurmerror_5.txt
-#SBATCH --output=/home/mila/c/chris.emezue/genedisco/slurmoutput_5.txt
+#SBATCH --error=/home/mila/c/chris.emezue/genedisco/slurmerror_6.txt
+#SBATCH --output=/home/mila/c/chris.emezue/genedisco/slurmoutput_6.txt
 
 ###########cluster information above this line
 module load python/3.8

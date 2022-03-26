@@ -57,12 +57,13 @@ class CustomLoss(sp.TorchLoss):
 
 class SingleCycleApplication(sp.AbstractBaseApplication):
     DATASET_NAMES = [
-        "shifrut_2018", "schmidt_2021_ifng",
-        "schmidt_2021_il2", "zhuang_2019_nk",
-        "sanchez_2021_tau", "zhu_2021_sarscov2"
+        "shifrut_2018", "schmidt_2021_ifng"#,
+        #"schmidt_2021_il2", "zhuang_2019_nk",
+        #"sanchez_2021_tau", "zhu_2021_sarscov2"
     ]
 
-    FEATURE_SET_NAMES = ["achilles", "ccle", "string"]
+    FEATURE_SET_NAMES = ["achilles"#, "ccle", "string"
+                                    ]
 
     def __init__(
         self,

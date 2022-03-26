@@ -37,14 +37,13 @@ class CoreSetUMAP(BaseBatchAcquisitionFunction):
         if not self.initialized:
             self.initialize(dataset_x)
             self.initialized=True         
-
+        
         topmost_hidden_representation = self.embedding.transform(dataset_x.subset(available_indices).get_data()[0]) 
        
         selected_hidden_representations = self.embedding.transform(dataset_x.subset(last_selected_indices).get_data()[0])
         chosen = self.select_most_distant(topmost_hidden_representation, selected_hidden_representations, batch_size)
-        #chosen = self.select_most_distant_with_kde(topmost_hidden_representation, selected_hidden_representations, batch_size)
-      
-        return [available_indices[idx] for idx in chosen] #change to `chosen` to use the default one - non-KDE   
+       
+        return [available_indices[idx] for idx in chosen]
 
     def select_most_distant(self, options, previously_selected, num_samples):
        
@@ -64,26 +63,4 @@ class CoreSetUMAP(BaseBatchAcquisitionFunction):
             indices.append(idx)
         return indices
     
-    def select_most_distant_with_kde(self, options, previously_selected, num_samples): #This one uses Kernel Density
-        
-            num_options, num_selected = len(options), len(previously_selected)
-            if num_selected == 0:
-                min_dist = np.tile(float("inf"), num_options)
-            else:
-                # Two options:
-                # 1. Use prevously_selected for fitting and `score_samples` on options (currently using this).
-                # 2. Use prevously_selected+options for fitting and `score_samples`` on options.
-                kde = KernelDensity(kernel='gaussian', bandwidth=0.5).fit(previously_selected)
-                log_likelihood_options = kde.score_samples(options) #log-likelihood of each sample in options under the model: https://scikit-learn.org/stable/modules/generated/sklearn.neighbors.KernelDensity.html#sklearn.neighbors.KernelDensity.score_samples 
-                min_dist = -1 * log_likelihood_options # (negative_log_likelihood_options). This will make the concept of min and max the same with when using pairwise distance
-             
-            indices = []
-            for i in range(num_samples):
-                idx = min_dist.argmax()
-                kde_one = KernelDensity(kernel='gaussian', bandwidth=0.5).fit(options[[idx], :]) # I question doing KDE on one data point. 
-                new_log_likelihood_options = kde_one.score_samples(options)
-                dist_new_ctr = -1 * new_log_likelihood_options
-                for j in range(num_options):
-                    min_dist[j] = min(min_dist[j], dist_new_ctr[j])
-                indices.append(idx)
-            return indices
+  

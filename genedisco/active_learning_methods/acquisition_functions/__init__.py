@@ -23,3 +23,4 @@ from .core_setUMAP import CoreSetUMAP
 from .badge_sampling import BadgeSampling
 from .adversarial_bim import AdversarialBIM
 from .uncertainty_acquisition import TopUncertainAcquisition, SoftUncertainAcquisition
+from .rnd import RND

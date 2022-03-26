@@ -42,7 +42,7 @@ class RunExperimentsApplication(sp.AbstractBaseApplication):
                  remote_execution_time_limit_days: int = 5,
                  remote_execution_mem_limit_in_mb: int = 8048,
                  remote_execution_virtualenv_path: AnyStr = "",
-                 remote_execution_num_cpus: int = 1):
+                 remote_execution_num_cpus: int = 4):
         self.cache_directory = cache_directory
         self.model_name = model_name
         self.acquisition_function_path = acquisition_function_path

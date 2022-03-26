@@ -45,7 +45,7 @@ class ActiveLearningLoop(sp.AbstractBaseApplication):
     #    "random", "topuncertain", "softuncertain", "marginsample", "coreset", "badge",
     #    "kmeans_embedding", "kmeans_data", "adversarialBIM"#, "custom"
     #]
-    ACQUISITION_FUNCTIONS = ["umap","kde"]
+    ACQUISITION_FUNCTIONS = ["umap"]#,"kde"]
 
     def __init__(
         self,
@@ -126,6 +126,7 @@ class ActiveLearningLoop(sp.AbstractBaseApplication):
         elif acquisition_function_name == "kde":
             return CoreSetKDE()     
         elif acquisition_function_name == "custom":
+         
             #return CoreSetUMAP()
             acqfunc_class = ActiveLearningLoop.get_if_valid_acquisition_function_file(acquisition_function_path)
             return acqfunc_class()
