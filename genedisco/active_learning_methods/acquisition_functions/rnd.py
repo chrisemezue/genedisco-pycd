@@ -15,6 +15,7 @@ limitations under the License.
 """
 import numpy as np
 import torch
+import time
 import torch.nn as nn
 import torch.optim as optim
 import torch.nn.functional as F
@@ -28,12 +29,10 @@ from genedisco.active_learning_methods.acquisition_functions.base_acquisition_fu
 class MyModel(nn.Module):
     def __init__(self,input_size):
         super(MyModel, self).__init__()
-        
         self.linear1 = nn.Linear(input_size, 64)
         self.linear2 = nn.Linear(64,32)
         self.linear3 = nn.Linear(32,1)
-        
-        
+    
     def forward(self, x):
         x = self.linear1(x)
         x = F.relu(x) 
@@ -54,7 +53,8 @@ class RND(BaseBatchAcquisitionFunction):
        # initialize random model with random fixed weights
        # initialize RND
        # initialize optimizer
-       self.random_model = initialize_model(input_size)  
+       self.random_model = initialize_model(input_size)
+      
        self.RND = initialize_model(input_size) 
        self.optimizer = optim.Adam(self.RND.parameters(),lr=0.0001)
 
@@ -66,7 +66,7 @@ class RND(BaseBatchAcquisitionFunction):
     def __call__(self, dataset_x: AbstractDataSource, batch_size: int, available_indices: List[AnyStr],
                  last_selected_indices: List[AnyStr], last_model: AbstractBaseModel) -> List:
                
-      
+        #start_time = time.time()
         available_data = torch.Tensor(dataset_x.subset(available_indices).get_data()[0])
         last_selected_data = dataset_x.subset(last_selected_indices).get_data()[0]
         input_size = available_data.shape[1]
@@ -88,6 +88,8 @@ class RND(BaseBatchAcquisitionFunction):
         #train on points_to_score
         self.train_on_points_to_acquire(points_to_score,dataset_x)      
         
+        #end_time = time.time()
+        #import pdb; pdb.set_trace()
         
         return points_to_score
 
@@ -101,43 +103,23 @@ class RND(BaseBatchAcquisitionFunction):
             Get loss: MSE(label_of_points_to_acquire,label_of_points_to_acquire) loss is by sum/mean
             do backward step
             optimizer.step()
-            
+
         """
         criterion = nn.MSELoss()
         EPOCH=20
         points_to_score_data = torch.Tensor(dataset_x.subset(points_to_score).get_data()[0]) #This is the training data
         self.RND.train() #Set to train mode
         for epoch in range(EPOCH):
-
             self.optimizer.zero_grad()
-            random_labels =  self.random_model(points_to_score_data)
+            with torch.no_grad():
+                random_labels =  self.random_model(points_to_score_data)
             pred_labels =  self.RND(points_to_score_data)
             loss = criterion(pred_labels,random_labels)
             loss.backward()
             print(f'LOSS: {loss.item()}')
             self.optimizer.step()
-        import pdb; pdb.set_trace()
+      
 
 
         self.RND.eval() # set to non-train mode.    
 
-
-    def select_most_distant(self, options, previously_selected, num_samples):
-       
-        num_options, num_selected = len(options), len(previously_selected)
-        if num_selected == 0:
-            min_dist = np.tile(float("inf"), num_options)
-        else:
-            dist_ctr = pairwise_distances(options, previously_selected)
-            min_dist = np.amin(dist_ctr, axis=1)
-          
-        indices = []
-        for i in range(num_samples):
-            idx = min_dist.argmax()
-            dist_new_ctr = pairwise_distances(options, options[[idx], :])
-            for j in range(num_options):
-                min_dist[j] = min(min_dist[j], dist_new_ctr[j, 0])
-            indices.append(idx)
-        return indices
-    
-  
