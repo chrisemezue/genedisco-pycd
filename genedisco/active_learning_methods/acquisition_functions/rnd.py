@@ -107,9 +107,10 @@ class RND(BaseBatchAcquisitionFunction):
             self.initialize(input_size)
             self.initialized=True
 
-        input_ = torch.squeeze(self.RND(available_data))
-        target_ = torch.squeeze(self.random_model(available_data))
-        scores = F.mse_loss(input_,target_,reduction='none').mean(-1).detach().numpy()
+        with torch.no_grad():
+            input_ = torch.squeeze(self.RND(available_data))
+            target_ = torch.squeeze(self.random_model(available_data))
+            scores = F.mse_loss(input_,target_,reduction='none').mean(-1).detach().numpy()
 
         selection_probabilities = softmax_temperature(scores+1e-10, 0.8)
 
