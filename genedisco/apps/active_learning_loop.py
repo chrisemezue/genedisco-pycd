@@ -32,6 +32,8 @@ from genedisco.active_learning_methods.acquisition_functions.badge_sampling impo
 from genedisco.active_learning_methods.acquisition_functions.adversarial_bim import AdversarialBIM
 from genedisco.active_learning_methods.acquisition_functions.uncertainty_acquisition import TopUncertainAcquisition
 from genedisco.active_learning_methods.acquisition_functions.uncertainty_acquisition import SoftUncertainAcquisition
+from genedisco.active_learning_methods.acquisition_functions.uncertainty_acquisition_05 import SoftUncertainAcquisition_05
+from genedisco.active_learning_methods.acquisition_functions.uncertainty_acquisition_07 import SoftUncertainAcquisition_07
 from genedisco.active_learning_methods.acquisition_functions.margin_sampling_acquisition import \
     MarginSamplingAcquisition
 from genedisco.active_learning_methods.acquisition_functions.base_acquisition_function import \
@@ -45,7 +47,9 @@ class ActiveLearningLoop(sp.AbstractBaseApplication):
     #    "random", "topuncertain", "softuncertain", "marginsample", "coreset", "badge",
     #    "kmeans_embedding", "kmeans_data", "adversarialBIM"#, "custom"
     #]
-    ACQUISITION_FUNCTIONS = ["umap"]#,"kde"]
+    #ACQUISITION_FUNCTIONS = ["umap"]#,"kde"]
+    ACQUISITION_FUNCTIONS = ['softuncertain_05','softuncertain_07']
+    
 
     def __init__(
         self,
@@ -121,6 +125,10 @@ class ActiveLearningLoop(sp.AbstractBaseApplication):
             return Kmeans(representation="raw", n_init=10)
         elif acquisition_function_name == "adversarialBIM":
             return AdversarialBIM()
+        elif acquisition_function_name == "softuncertain_05":
+            return SoftUncertainAcquisition_05()
+        elif acquisition_function_name == "softuncertain_07":
+            return SoftUncertainAcquisition_07()
         elif acquisition_function_name == "umap":
             return CoreSetUMAP()  
         elif acquisition_function_name == "kde":
@@ -131,7 +139,9 @@ class ActiveLearningLoop(sp.AbstractBaseApplication):
             acqfunc_class = ActiveLearningLoop.get_if_valid_acquisition_function_file(acquisition_function_path)
             return acqfunc_class()
         else:
+            print('hello')
             raise NotImplementedError()
+        
 
     @staticmethod
     def get_if_valid_acquisition_function_file(acquisition_function_path: AnyStr):
