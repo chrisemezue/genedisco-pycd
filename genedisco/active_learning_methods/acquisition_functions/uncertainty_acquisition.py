@@ -14,6 +14,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 """
 import scipy
+import torch
+import torch.nn as nn
 import numpy as np
 from typing import AnyStr, List
 from slingpy import AbstractDataSource
@@ -48,6 +50,32 @@ def softmax_temperature(x, temperature=1):
         return out_np
 
 
+
+class Surrogate(nn.Module):
+    def __init__(self, data):
+        super().__init__()
+
+        n_feats = data[0][0].shape
+        hidden = 128
+        outputs = 64
+
+
+        # loss = MSE(f(x) - random(x))
+
+
+        self.module = nn.Sequential(
+            nn.Linear(n_feats, hidden),
+            nn.ReLU(),
+            nn.Linear(hidden, outputs)
+        )
+
+        import pdb; pdb.set_trace()
+
+
+    def forward(self, x):
+        return self.a + self.b * x + self.c * x ** 2 + self.d * x ** 3
+
+
 class TopUncertainAcquisition(BaseBatchAcquisitionFunction):
     def __call__(self,
                  dataset_x: AbstractDataSource,
@@ -76,7 +104,16 @@ class TopUncertainAcquisition(BaseBatchAcquisitionFunction):
         return selected_indices
 
 
+
+
 class SoftUncertainAcquisition(BaseBatchAcquisitionFunction):
+    def __init__(self):
+        self.initialized = False
+
+    def initialize(self, data):
+        self.surrogate = Surrogate(data)
+        self.optimizer = torch.optim.Adam
+
     def __call__(self,
                  dataset_x: AbstractDataSource,
                  select_size: int,
@@ -87,6 +124,13 @@ class SoftUncertainAcquisition(BaseBatchAcquisitionFunction):
                  ) -> List:
         avail_dataset_x = dataset_x.subset(available_indices)
         model_pedictions = model.predict(avail_dataset_x, return_std_and_margin=True)
+
+        import pdb; pdb.set_trace()
+        if not self.initialized:
+            self.initialize(avail_dataset_x)
+
+        # get novelty scores
+        # novelty = surrogate_model(avail_dataset_x)
 
         if len(model_pedictions) != 3:
             raise TypeError("The provided model does not output uncertainty.")
@@ -108,4 +152,8 @@ class SoftUncertainAcquisition(BaseBatchAcquisitionFunction):
             p=selection_probabilities)
         selected_indices = [available_indices[i] for i
                             in numerical_selected_indices]
+
+        # update novelty detector
+        # surrogate_model.update(avail_dataset_x.subset(selected_indices))
+
         return selected_indices
