@@ -24,5 +24,6 @@ from .badge_sampling import BadgeSampling
 from .adversarial_bim import AdversarialBIM
 from .uncertainty_acquisition import TopUncertainAcquisition, SoftUncertainAcquisition
 from .rnd import RND
+from .uncertainty_acquisition_03 import SoftUncertainAcquisition_03
 from .uncertainty_acquisition_05 import SoftUncertainAcquisition_05
 from .uncertainty_acquisition_07 import SoftUncertainAcquisition_07
