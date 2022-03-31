@@ -26,34 +26,40 @@ from genedisco.active_learning_methods.acquisition_functions.base_acquisition_fu
 class CoreSetUMAP(BaseBatchAcquisitionFunction):
     def initialize(self,dataset_x):
         #Fit UMAP on the whole dataset
-        self.embedding = umap.UMAP(metric='euclidean', n_components=16).fit(dataset_x.get_data()[0])
+        print("fitting")
+        _umap = umap.UMAP(metric='euclidean', n_components=16).fit(dataset_x.get_data()[0])
+        print("transforming")
+        self.embedding = _umap.transform(dataset_x.get_data()[0])
 
     def __init__(self):
         self.initialized=False
         self.embedding= None
-        
+
     def __call__(self, dataset_x: AbstractDataSource, batch_size: int, available_indices: List[AnyStr],
                  last_selected_indices: List[AnyStr], last_model: AbstractBaseModel) -> List:
         if not self.initialized:
             self.initialize(dataset_x)
-            self.initialized=True         
-        
-        topmost_hidden_representation = self.embedding.transform(dataset_x.subset(available_indices).get_data()[0]) 
-       
-        selected_hidden_representations = self.embedding.transform(dataset_x.subset(last_selected_indices).get_data()[0])
+            self.initialized=True
+
+        avaliable_idx = np.concatenate([dataset_x.row_index[name] for name in available_indices if name in dataset_x.row_index])
+        last_selected_idx = np.concatenate([dataset_x.row_index[name] for name in last_selected_indices if name in dataset_x.row_index])
+
+        topmost_hidden_representation = self.embedding[avaliable_idx]
+        selected_hidden_representations = self.embedding[last_selected_idx]
+
         chosen = self.select_most_distant(topmost_hidden_representation, selected_hidden_representations, batch_size)
-       
+
         return [available_indices[idx] for idx in chosen]
 
     def select_most_distant(self, options, previously_selected, num_samples):
-       
+
         num_options, num_selected = len(options), len(previously_selected)
         if num_selected == 0:
             min_dist = np.tile(float("inf"), num_options)
         else:
             dist_ctr = pairwise_distances(options, previously_selected)
             min_dist = np.amin(dist_ctr, axis=1)
-          
+
         indices = []
         for i in range(num_samples):
             idx = min_dist.argmax()
@@ -62,5 +68,4 @@ class CoreSetUMAP(BaseBatchAcquisitionFunction):
                 min_dist[j] = min(min_dist[j], dist_new_ctr[j, 0])
             indices.append(idx)
         return indices
-    
-  
+
