@@ -14,4 +14,4 @@ xxhash>=2.0.0
 requests>=2.26.0
 seaborn>=0.11.2
 slingpy==0.1.0
-umap-learn
+umap-learn==0.5.2
