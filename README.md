@@ -19,10 +19,6 @@ mplementations of state-of-the-art active learning policies for experimental des
 
 ## GeneDisco ICLR-22 Challenge
 
-Learn more about the GeneDisco challenge for experimental design for optimally exploring the vast genetic intervention space [here](https://www.gsk.ai/genedisco-challenge/).
-
-    }
-
 ### License
 
 [License](LICENSE.txt)
@@ -44,4 +40,4 @@ uncertainty_acquisition_05.py
 uncertainty_acquisition_07.py
 uncertainty_acquisition_10.py
 ```
-### [We won the challenge🤩!](https://twitter.com/DariaYasafova/status/1520137801894969344)
+## [We won the challenge🤩!](https://twitter.com/DariaYasafova/status/1520137801894969344)
