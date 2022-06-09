@@ -127,8 +127,12 @@ Please consider citing, if you reference or use our methodology, code or results
 
 [License](LICENSE.txt)
 
+
 Contribution from **pycd** team:
+
+
 the following files are under MIT License:
+```
 core_set.py
 core_set2.py
 core_setUMAP.py 
@@ -139,6 +143,7 @@ uncertainty_acquisition_03.py
 uncertainty_acquisition_05.py
 uncertainty_acquisition_07.py
 uncertainty_acquisition_10.py
+```
 
 ### Authors
 
