@@ -1,3 +1,5 @@
+## [We won the challenge🤩!](https://twitter.com/DariaYasafova/status/1520137801894969344)
+
 ![image](https://user-images.githubusercontent.com/36100251/172914641-6c1aefff-e72d-4a7d-a918-d95968768edd.png)
 
 
@@ -48,4 +50,4 @@ Please note that it is possible to open genedisco-pycd/genedisco/visualization/v
 To do that, open the notebook as a raw file, copy its content, and save it on your local machine as an .ipynb file.
 The notebook contains some of our latest visualization comparisons that we used to choose the best performing acquisition function among those we tried.
 
-## [We won the challenge🤩!](https://twitter.com/DariaYasafova/status/1520137801894969344)
+
