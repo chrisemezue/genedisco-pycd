@@ -29,15 +29,23 @@ Contribution from **pycd** team:
 
 the following files are under [our MIT License](https://github.com/chrisemezue/genedisco-pycd/blob/master/LICENSE_MIT.md):
 ```
-core_set.py
-core_set2.py
-core_setUMAP.py 
-ensemble_rnd.py 
-rnd.py
-uncertainty_acquisition.py
-uncertainty_acquisition_03.py
-uncertainty_acquisition_05.py
-uncertainty_acquisition_07.py
-uncertainty_acquisition_10.py
+genedisco-pycd/genedisco/active_learning_methods/acquisition_functions/core_set.py
+genedisco-pycd/genedisco/active_learning_methods/acquisition_functions/core_set2.py
+genedisco-pycd/genedisco/active_learning_methods/acquisition_functions/core_setUMAP.py 
+genedisco-pycd/genedisco/active_learning_methods/acquisition_functions/ensemble_rnd.py 
+genedisco-pycd/genedisco/active_learning_methods/acquisition_functions/rnd.py
+genedisco-pycd/genedisco/active_learning_methods/acquisition_functions/uncertainty_acquisition.py
+genedisco-pycd/genedisco/active_learning_methods/acquisition_functions/uncertainty_acquisition_03.py
+genedisco-pycd/genedisco/active_learning_methods/acquisition_functions/uncertainty_acquisition_05.py
+genedisco-pycd/genedisco/active_learning_methods/acquisition_functions/uncertainty_acquisition_07.py
+genedisco-pycd/genedisco/active_learning_methods/acquisition_functions/uncertainty_acquisition_10.py
+genedisco-pycd/genedisco/visualization/visualization_2.ipynb
+genedisco-pycd/genedisco/visualization/viz.py
+genedisco-pycd/genedisco/visualization/viz_utils.py
 ```
+
+Please note that it is possible to open genedisco-pycd/genedisco/visualization/visualization_2.ipynb.
+To do that open the notebook as a raw file, copy its content, and save it on your local machine as .ipynb file.
+The notebook contains some of our latest visualization comparisons that we used to choose the best performing acquisition function among those we tried.
+
 ## [We won the challenge🤩!](https://twitter.com/DariaYasafova/status/1520137801894969344)
