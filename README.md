@@ -53,3 +53,10 @@ genedisco-pycd/genedisco/visualization/visualization_2.ipynb
 genedisco-pycd/genedisco/visualization/viz.py
 genedisco-pycd/genedisco/visualization/viz_utils.py
 ```
+
+### PYCD Team
+
+- **P**anagiotis Tigas [(@ptigas)](https://twitter.com/ptigas)
+- **Y**ashas Annadani [(@yashasannadani)](https://twitter.com/yashasannadani)
+- **C**hris Emezue [(@ChrisEmezue)](https://twitter.com/ChrisEmezue)
+- **D**aria Yasafova [(@DariaYasafova)](https://twitter.com/DariaYasafova)
