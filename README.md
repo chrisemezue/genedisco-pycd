@@ -54,7 +54,7 @@ genedisco-pycd/genedisco/visualization/viz.py
 genedisco-pycd/genedisco/visualization/viz_utils.py
 ```
 
-### PYCD Team
+## PYCD Team
 
 - **P**anagiotis Tigas [(@ptigas)](https://twitter.com/ptigas)
 - **Y**ashas Annadani [(@yashasannadani)](https://twitter.com/yashasannadani)
