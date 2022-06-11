@@ -31,6 +31,8 @@ from genedisco.apps.single_cycle_application import SingleCycleApplication, Cust
 from genedisco.active_learning_methods.acquisition_functions.badge_sampling import BadgeSampling
 from genedisco.active_learning_methods.acquisition_functions.adversarial_bim import AdversarialBIM
 from genedisco.active_learning_methods.acquisition_functions.uncertainty_acquisition import TopUncertainAcquisition
+from genedisco.active_learning_methods.acquisition_functions.rnd import RND
+from genedisco.active_learning_methods.acquisition_functions.rnd_05 import RND_05
 from genedisco.active_learning_methods.acquisition_functions.uncertainty_acquisition import SoftUncertainAcquisition
 from genedisco.active_learning_methods.acquisition_functions.uncertainty_acquisition_03 import SoftUncertainAcquisition_03
 from genedisco.active_learning_methods.acquisition_functions.uncertainty_acquisition_05 import SoftUncertainAcquisition_05
@@ -127,6 +129,10 @@ class ActiveLearningLoop(sp.AbstractBaseApplication):
             return Kmeans(representation="raw", n_init=10)
         elif acquisition_function_name == "adversarialBIM":
             return AdversarialBIM()
+        elif acquisition_function_name == "rnd":
+            return RND()
+        elif acquisition_function_name == "rnd5":
+            return RND_05()
         elif acquisition_function_name == "softuncertain_03":
             return SoftUncertainAcquisition_03()
         elif acquisition_function_name == "softuncertain_05":
