@@ -4,7 +4,7 @@
 ## [We won the challenge🤩!](https://twitter.com/DariaYasafova/status/1520137801894969344)
 
 
-We used Random Network Distilation model [(code snippet)](genedisco/active_learning_methods/acquisition_functions/rnd_05.py) for our final submission. Please refer to the [paper](https://arxiv.org/abs/1810.12894) to learn more about the method.
+We used Random Network Distilation model [(code snippet)](genedisco/active_learning_methods/acquisition_functions/rnd_05.py#L79) for our final submission. Please refer to the [paper](https://arxiv.org/abs/1810.12894) to learn more about the method.
 
 
 ## GeneDisco: A benchmark for active learning in drug discovery
