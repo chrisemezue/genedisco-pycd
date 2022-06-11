@@ -35,7 +35,7 @@ The notebook contains some of our latest visualization comparisons that we used 
 
 ### License
 
-GeneDisco benchmark is licensed under [Apache License](LICENSE.txt)
+GeneDisco benchmark is licensed under [Apache License](LICENSE.txt).
 
 Contribution from  **pycd** team are licensed under [MIT License](https://github.com/chrisemezue/genedisco-pycd/blob/master/LICENSE_MIT.md):
 ```
