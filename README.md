@@ -25,15 +25,20 @@ mplementations of state-of-the-art active learning policies for experimental des
 
 ## GeneDisco ICLR-22 Challenge
 
+
+### Visualization
+
+Please note that it is possible to open genedisco-pycd/genedisco/visualization/visualization_2.ipynb, even though it's too large to view it on github.
+To do that, open the notebook as a raw file, copy its content, and save it on your local machine as an .ipynb file.
+The notebook contains some of our latest visualization comparisons that we used to choose the best performing acquisition function among those we tried.
+
+
 ### License
 
 [License](LICENSE.txt)
 
-
 Contribution from  **pycd** team:
-
-
-the following files are under [our MIT License](https://github.com/chrisemezue/genedisco-pycd/blob/master/LICENSE_MIT.md):
+the following files are under [MIT License](https://github.com/chrisemezue/genedisco-pycd/blob/master/LICENSE_MIT.md):
 ```
 genedisco-pycd/genedisco/active_learning_methods/acquisition_functions/core_set.py
 genedisco-pycd/genedisco/active_learning_methods/acquisition_functions/core_set2.py
@@ -49,9 +54,3 @@ genedisco-pycd/genedisco/visualization/visualization_2.ipynb
 genedisco-pycd/genedisco/visualization/viz.py
 genedisco-pycd/genedisco/visualization/viz_utils.py
 ```
-
-Please note that it is possible to open genedisco-pycd/genedisco/visualization/visualization_2.ipynb, even though it's too large to view it on github.
-To do that, open the notebook as a raw file, copy its content, and save it on your local machine as an .ipynb file.
-The notebook contains some of our latest visualization comparisons that we used to choose the best performing acquisition function among those we tried.
-
-
