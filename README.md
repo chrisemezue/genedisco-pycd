@@ -35,10 +35,9 @@ The notebook contains some of our latest visualization comparisons that we used 
 
 ### License
 
-[License](LICENSE.txt)
+GeneDisco benchmark is licensed under [Apache License](LICENSE.txt)
 
-Contribution from  **pycd** team:
-the following files are under [MIT License](https://github.com/chrisemezue/genedisco-pycd/blob/master/LICENSE_MIT.md):
+Contribution from  **pycd** team are licensed under [MIT License](https://github.com/chrisemezue/genedisco-pycd/blob/master/LICENSE_MIT.md):
 ```
 genedisco-pycd/genedisco/active_learning_methods/acquisition_functions/core_set.py
 genedisco-pycd/genedisco/active_learning_methods/acquisition_functions/core_set2.py
