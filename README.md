@@ -24,7 +24,7 @@ mplementations of state-of-the-art active learning policies for experimental des
 [License](LICENSE.txt)
 
 
-Contribution from **pycd** team:
+Contribution from  <span style="font-size:larger;">pycd</span> team:
 
 
 the following files are under [our MIT License](https://github.com/chrisemezue/genedisco-pycd/blob/master/LICENSE_MIT.md):
