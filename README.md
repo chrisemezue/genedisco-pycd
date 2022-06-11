@@ -1,7 +1,7 @@
 ## GeneDisco competition 1st place submission (team pycd)
 
 ![image](https://user-images.githubusercontent.com/36100251/172914641-6c1aefff-e72d-4a7d-a918-d95968768edd.png)
-##[We won the challenge🤩!](https://twitter.com/DariaYasafova/status/1520137801894969344)
+## [We won the challenge🤩!](https://twitter.com/DariaYasafova/status/1520137801894969344)
 
 
 We used [Random Network Distilation model](genedisco/active_learning_methods/acquisition_functions/rnd_05.py) for our final submission. Please refer to the [paper](https://arxiv.org/abs/1810.12894) to learn more about the method.
