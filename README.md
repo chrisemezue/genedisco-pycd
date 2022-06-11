@@ -44,6 +44,7 @@ genedisco-pycd/genedisco/active_learning_methods/acquisition_functions/core_set2
 genedisco-pycd/genedisco/active_learning_methods/acquisition_functions/core_setUMAP.py 
 genedisco-pycd/genedisco/active_learning_methods/acquisition_functions/ensemble_rnd.py 
 genedisco-pycd/genedisco/active_learning_methods/acquisition_functions/rnd.py
+genedisco-pycd/genedisco/active_learning_methods/acquisition_functions/rnd_05.py
 genedisco-pycd/genedisco/active_learning_methods/acquisition_functions/uncertainty_acquisition.py
 genedisco-pycd/genedisco/active_learning_methods/acquisition_functions/uncertainty_acquisition_03.py
 genedisco-pycd/genedisco/active_learning_methods/acquisition_functions/uncertainty_acquisition_05.py
